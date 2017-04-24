@@ -16,7 +16,7 @@ using SwinGameSDK;
 /// </remarks>
 static class HighScoreController
 {
-	private const int NAME_WIDTH = 3;
+	private const int NAME_WIDTH = 4;
 
 	private const int SCORES_LEFT = 490;
 	/// <summary>
@@ -79,8 +79,8 @@ static class HighScoreController
 
 			line = input.ReadLine();
 
-			s.Name = line.Substring(0, NAME_WIDTH);
-			s.Value = Convert.ToInt32(line.Substring(NAME_WIDTH));
+			s.Name = line.Substring(0, NAME_WIDTH-1);
+			s.Value = Convert.ToInt32(line.Substring(NAME_WIDTH-1));
 			_Scores.Add(s);
 		}
 		input.Close();
