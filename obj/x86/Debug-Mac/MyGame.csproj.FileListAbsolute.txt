@@ -24,5 +24,8 @@ E:\Documents\GitHub\battleships\bin\Debug\MyGame.pdb
 E:\Documents\GitHub\battleships\bin\Debug\SwinGame.dll
 E:\Documents\GitHub\battleships\obj\x86\Debug-Mac\MyGame.csprojResolveAssemblyReference.cache
 E:\Documents\GitHub\battleships\obj\x86\Debug-Mac\MyGame.pdb
+<<<<<<< HEAD
 C:\Users\james\Documents\GitHub\battleships\obj\x86\Debug-Mac\MyGame.exe
 C:\Users\james\Documents\GitHub\battleships\obj\x86\Debug-Mac\MyGame.pdb
+=======
+>>>>>>> refs/remotes/origin/master
