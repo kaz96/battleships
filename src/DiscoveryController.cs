@@ -6,6 +6,7 @@ using System.Collections.Generic;
 //using System.Data;
 using System.Diagnostics;
 using SwinGameSDK;
+using System.Timers;
 
 /// <summary>
 /// The battle phase is handled by the DiscoveryController.
@@ -13,33 +14,64 @@ using SwinGameSDK;
 static class DiscoveryController
 {
 
-	/// <summary>
-	/// Handles input during the discovery phase of the game.
-	/// </summary>
-	/// <remarks>
-	/// Escape opens the game menu. Clicking the mouse will
-	/// attack a location.
-	/// </remarks>
-	public static void HandleDiscoveryInput()
+     static Random _Random = new Random ();
+
+    /// <summary>
+    /// Handles input during the discovery phase of the game.
+    /// </summary>
+    /// <remarks>
+    /// Escape opens the game menu. Clicking the mouse will
+    /// attack a location.
+    /// </remarks>
+    public static void HandleDiscoveryInput()
 	{
+        bool random;
 		if (SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
 			GameController.AddNewState(GameState.ViewingGameMenu);
 		}
 
-		if (SwinGame.MouseClicked(MouseButton.LeftButton)) {
-			DoAttack();
+
+
+
+       
+
+
+        if (SwinGame.MouseClicked(MouseButton.LeftButton)) {
+            random = false;
+			DoAttack(random);
 		}
+
+        if (SwinGame.KeyTyped(KeyCode.vk_r)) {
+            random = true;
+            DoAttack (random);
+        }
+     
+
+
 	}
 
-	/// <summary>
-	/// Attack the location that the mouse if over.
-	/// </summary>
-	private static void DoAttack()
+  
+
+    /// <summary>
+    /// Attack the location that the mouse if over.
+    /// </summary>
+    private static void DoAttack(bool random)
 	{
-		Point2D mouse = default(Point2D);
+        Point2D mouse = default (Point2D);
 
-		mouse = SwinGame.MousePosition();
+        if (random == false) 
+        {
 
+
+            mouse = SwinGame.MousePosition ();
+        }
+
+        if (random == true) 
+        {
+            mouse.X = _Random.Next(354,762);
+            mouse.Y = _Random.Next (130, 539);
+            
+        }
 		//Calculate the row/col clicked
 		int row = 0;
 		int col = 0;
