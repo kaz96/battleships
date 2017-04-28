@@ -13,6 +13,7 @@ using System.Timers;
 /// </summary>
 static class DiscoveryController
 {
+    
 
      static Random _Random = new Random ();
 
@@ -25,27 +26,49 @@ static class DiscoveryController
     /// </remarks>
     public static void HandleDiscoveryInput()
 	{
+        SwinGameSDK.Timer test = new SwinGameSDK.Timer ();
+
+
+        test = SwinGame.CreateTimer ();
+        SwinGame.StartTimer (test);
+
+        bool test1 = true;
+
         bool random;
-		if (SwinGame.KeyTyped(KeyCode.vk_ESCAPE)) {
-			GameController.AddNewState(GameState.ViewingGameMenu);
-		}
+
+        while (test1 == true) 
+        {
+            var ticks =SwinGame.TimerTicks (test);
+
+            if (ticks >= 5000)
+            {
+                random = true;
+                test1 = false;
+                DoAttack (random);
+
+            }
+
+            if (SwinGame.KeyTyped (KeyCode.vk_ESCAPE)) {
+                GameController.AddNewState (GameState.ViewingGameMenu);
+            }
 
 
 
 
-       
 
 
-        if (SwinGame.MouseClicked(MouseButton.LeftButton)) {
-            random = false;
-			DoAttack(random);
-		}
+            if (SwinGame.MouseClicked (MouseButton.LeftButton)) {
+                random = false;
+                test1 = false;
+                DoAttack (random);
+            }
 
-        if (SwinGame.KeyTyped(KeyCode.vk_r)) {
+            if (SwinGame.KeyTyped (KeyCode.vk_r)) {
             random = true;
+                test1 = false;
             DoAttack (random);
         }
-     
+        }
 
 
 	}
