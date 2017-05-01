@@ -22,6 +22,8 @@ public class Player : IEnumerable<Ship>
 	private int _hits;
 
 	private int _misses;
+
+
 	/// <summary>
 	/// Returns the game that the player is part of.
 	/// </summary>
