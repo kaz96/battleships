@@ -45,27 +45,21 @@ static class DiscoveryController
                 DoAttack (random);
             }
 
-            if (SwinGame.KeyTyped (KeyCode.vk_ESCAPE)) {
+        if (SwinGame.KeyTyped (KeyCode.vk_ESCAPE)) {
                 GameController.AddNewState (GameState.ViewingGameMenu);
+        }
 
-            }
+        if (SwinGame.MouseClicked (MouseButton.LeftButton)) {
+            random = false;
+            SwinGame.ResetTimer(countdown);
+            DoAttack (random);
+        }
 
-
-
-
-
-
-            if (SwinGame.MouseClicked (MouseButton.LeftButton)) {
-                random = false;
-
-                DoAttack (random);
-            }
-
-            if (SwinGame.KeyTyped (KeyCode.vk_r)) {
-                random = true;
-
-                DoAttack (random);
-            }
+        if (SwinGame.KeyTyped (KeyCode.vk_r)) {
+            random = true;
+            SwinGame.ResetTimer(countdown);
+            DoAttack (random);
+        }
 
         
 
