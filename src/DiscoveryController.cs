@@ -30,11 +30,7 @@ static class DiscoveryController
     {
        
         bool random;
-
-
-            var ticks = SwinGame.TimerTicks (countdown);
-
-
+         var ticks = SwinGame.TimerTicks (countdown);
         var seconds = Math.Abs(10 - (ticks / 1000));
 
         SwinGame.DrawText (seconds.ToString(), Color.White, GameResources.GameFont ("Menu"), 172, 300);
