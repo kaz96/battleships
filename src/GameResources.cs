@@ -116,6 +116,8 @@ public static class GameResources
 	private static Bitmap _LoaderEmpty;
 	private static Font _LoadingFont;
 
+	public static bool statusEffect; //Lyhuy
+
 	private static SoundEffect _StartSound;
 	/// <summary>
 	/// The Resources Class stores all of the Games Media Resources, such as Images, Fonts
@@ -296,8 +298,13 @@ public static class GameResources
 	public static void Mute()//Kosala
 	{
 		SwinGame.StopMusic ();
-		FreeSounds ();
+		statusEffect = false;
 	}
+	public static void Play ()
+	{
+		SwinGame.PlayMusic (GameResources.GameMusic ("Background"));
+
+		statusEffect = true;	 }
 
 
 	public static void FreeResources()
