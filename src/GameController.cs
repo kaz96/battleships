@@ -65,6 +65,7 @@ public static class GameController
 	/// </summary>
 	/// <remarks>
 	/// Creates an AI player based upon the _aiSetting.
+	/// 
 	/// </remarks>
 	public static void StartGame()
 	{
@@ -141,6 +142,8 @@ public static class GameController
 		UtilityFunctions.DrawAnimationSequence();
 	}
 
+
+
 	/// <summary>
 	/// Listens for attacks to be completed.
 	/// </summary>
@@ -159,6 +162,14 @@ public static class GameController
 		} else {
 			UtilityFunctions.Message = "The AI " + result.ToString();
 		}
+
+		if (SwinGame.KeyTyped (KeyCode.vk_m))
+		{
+
+
+
+		}
+
 
 		switch (result.Value) {
 			case ResultOfAttack.Destroyed:
@@ -272,6 +283,12 @@ public static class GameController
 	{
 		//Read incoming input events
 		SwinGame.ProcessEvents();
+
+		if (SwinGame.KeyTyped (KeyCode.vk_m))//Kosala
+		{
+			GameResources.Mute ();
+		}
+
 
 		switch (CurrentState) {
 			case GameState.ViewingMainMenu:

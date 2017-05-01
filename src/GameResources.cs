@@ -293,6 +293,12 @@ public static class GameResources
 			Audio.FreeMusic(obj);
 		}
 	}
+	public static void Mute()//Kosala
+	{
+		SwinGame.StopMusic ();
+		FreeSounds ();
+	}
+
 
 	public static void FreeResources()
 	{

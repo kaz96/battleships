@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug-Windows</Configuration>
@@ -79,8 +79,8 @@
     <Compile Include="src\Model\TileView.cs" />
     <Compile Include="src\DeploymentController.cs" />
     <Compile Include="src\DiscoveryController.cs" />
-    <Compile Include="src\EndingGameController.cs" />
     <Compile Include="src\GameController.cs" />
+    <Compile Include="src\EndingGameController.cs" />
     <Compile Include="src\GameLogic.cs" />
     <Compile Include="src\GameResources.cs" />
     <Compile Include="src\GameState.cs" />
