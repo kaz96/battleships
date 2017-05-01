@@ -35,21 +35,14 @@ static class DiscoveryController
             var ticks = SwinGame.TimerTicks (countdown);
 
 
-        var seconds = ticks / 1000;
+        var seconds = Math.Abs(10 - (ticks / 1000));
 
         SwinGame.DrawText (seconds.ToString(), Color.White, GameResources.GameFont ("Menu"), 172, 300);
         SwinGame.RefreshScreen ();
-        if (ticks > 20000) {
-
-
-
+        if (ticks > 10000) {
                 random = true;
                 SwinGame.ResetTimer (countdown);
-                
                 DoAttack (random);
-
-
-
             }
 
             if (SwinGame.KeyTyped (KeyCode.vk_ESCAPE)) {
