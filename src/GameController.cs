@@ -23,12 +23,16 @@ public static class GameController
 	private static Stack<GameState> _state = new Stack<GameState>();
 
 	private static AIOption _aiSetting;
-	/// <summary>
-	/// Returns the current state of the game, indicating which screen is
-	/// currently being used
-	/// </summary>
-	/// <value>The current state</value>
-	/// <returns>The current state</returns>
+    /// <summary>
+    /// Returns the current state of the game, indicating which screen is
+    /// currently being used
+    /// </summary>
+    /// <value>The current state</value>
+    /// <returns>The current state</returns>
+    /// 
+
+    public static Timer countdown = new SwinGameSDK.Timer ();
+
 	public static GameState CurrentState {
 		get { return _state.Peek(); }
 	}
@@ -208,6 +212,10 @@ public static class GameController
 		_theGame.AddDeployedPlayer(_human);
 		_theGame.AddDeployedPlayer(_ai);
 
+        countdown = SwinGame.CreateTimer ();
+        SwinGame.StartTimer (countdown);
+       
+
 		SwitchState(GameState.Discovering);
 	}
 
@@ -287,7 +295,8 @@ public static class GameController
 				DeploymentController.HandleDeploymentInput();
 				break;
 			case GameState.Discovering:
-				DiscoveryController.HandleDiscoveryInput();
+
+				DiscoveryController.HandleDiscoveryInput(countdown);
 				break;
 			case GameState.EndingGame:
 				EndingGameController.HandleEndOfGameInput();
