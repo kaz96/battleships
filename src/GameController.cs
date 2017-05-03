@@ -153,48 +153,72 @@ public static class GameController
     /// <remarks>
     /// Displays a message, plays sound and redraws the screen
     /// </remarks>
-    private static void AttackCompleted (object sender, AttackResult result)
+    private static void AttackCompleted(object sender, AttackResult result)
     {
         bool isHuman = false;
-        isHuman = object.ReferenceEquals (_theGame.Player, HumanPlayer);
+        isHuman = object.ReferenceEquals(_theGame.Player, HumanPlayer);
 
-        if (isHuman) {
-            UtilityFunctions.Message = "You " + result.ToString ();
-        } else {
-            UtilityFunctions.Message = "The AI " + result.ToString ();
+        if (isHuman)
+        {
+            UtilityFunctions.Message = "You " + result.ToString();
+        }
+        else
+        {
+            UtilityFunctions.Message = "The AI " + result.ToString();
         }
 
-        switch (result.Value) {
-        case ResultOfAttack.Destroyed:
-            PlayHitSequence (result.Row, result.Column, isHuman);
-            Audio.PlaySoundEffect (GameResources.GameSound ("Sink"));
+        switch (result.Value)
+        {
+            case ResultOfAttack.Destroyed:
+                PlayHitSequence(result.Row, result.Column, isHuman);
+                if (GameResources.statusEffect == true)
+                {
+                    Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
+                }
+                break;
+            case ResultOfAttack.GameOver:
+                PlayHitSequence(result.Row, result.Column, isHuman);
+                if (GameResources.statusEffect == true)
+                {
+                    Audio.PlaySoundEffect(GameResources.GameSound("Sink"));
+                }
+                if (GameResources.statusEffect == true)
+                {
+                    while (Audio.SoundEffectPlaying(GameResources.GameSound("Sink")))
+                    {
+                        SwinGame.Delay(10);
+                        SwinGame.RefreshScreen();
+                    }
+                }
 
-            break;
-        case ResultOfAttack.GameOver:
-            PlayHitSequence (result.Row, result.Column, isHuman);
-            Audio.PlaySoundEffect (GameResources.GameSound ("Sink"));
+                if (HumanPlayer.IsDestroyed)
+                {
+                    if (GameResources.statusEffect == true)
+                    {
+                        Audio.PlaySoundEffect(GameResources.GameSound("Lose"));
+                    }
+                }
+                else
+                {
+                    if (GameResources.statusEffect == true)
+                    {
+                        Audio.PlaySoundEffect(GameResources.GameSound("Winner"));
+                    }
+                }
 
-            while (Audio.SoundEffectPlaying (GameResources.GameSound ("Sink"))) {
-                SwinGame.Delay (10);
-                SwinGame.RefreshScreen ();
-            }
-
-            if (HumanPlayer.IsDestroyed) {
-                Audio.PlaySoundEffect (GameResources.GameSound ("Lose"));
-            } else {
-                Audio.PlaySoundEffect (GameResources.GameSound ("Winner"));
-            }
-
-            break;
-        case ResultOfAttack.Hit:
-            PlayHitSequence (result.Row, result.Column, isHuman);
-            break;
-        case ResultOfAttack.Miss:
-            PlayMissSequence (result.Row, result.Column, isHuman);
-            break;
-        case ResultOfAttack.ShotAlready:
-            Audio.PlaySoundEffect (GameResources.GameSound ("Error"));
-            break;
+                break;
+            case ResultOfAttack.Hit:
+                PlayHitSequence(result.Row, result.Column, isHuman);
+                break;
+            case ResultOfAttack.Miss:
+                PlayMissSequence(result.Row, result.Column, isHuman);
+                break;
+            case ResultOfAttack.ShotAlready:
+                if (GameResources.statusEffect == true)
+                {
+                    Audio.PlaySoundEffect(GameResources.GameSound("Error"));
+                }
+                break;
         }
     }
 
@@ -317,6 +341,15 @@ public static class GameController
     /// </remarks>
     public static void DrawScreen ()
     {
+
+        if (SwinGame.KeyTyped(KeyCode.vk_m))
+        {
+            GameResources.Mute();
+        }
+        if (SwinGame.KeyTyped(KeyCode.vk_p))
+        {
+            GameResources.Play();
+        }
         UtilityFunctions.DrawBackground ();
 
         switch (CurrentState) {
