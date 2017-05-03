@@ -128,9 +128,10 @@ public static class GameController
         if (showAnimation) {
             UtilityFunctions.AddExplosion (row, column);
         }
-
-        Audio.PlaySoundEffect (GameResources.GameSound ("Hit"));
-
+        if (GameResources.statusEffect == true)
+        {
+            Audio.PlaySoundEffect(GameResources.GameSound("Hit"));
+        }
         UtilityFunctions.DrawAnimationSequence ();
     }
 
@@ -140,7 +141,10 @@ public static class GameController
             UtilityFunctions.AddSplash (row, column);
         }
 
-        Audio.PlaySoundEffect (GameResources.GameSound ("Miss"));
+        if (GameResources.statusEffect == true)
+        {
+            Audio.PlaySoundEffect(GameResources.GameSound("Miss"));
+        }
 
         UtilityFunctions.DrawAnimationSequence ();
     }
