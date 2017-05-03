@@ -76,3 +76,5 @@ C:\Users\Lyco\Desktop\battleships\bin\Debug\SwinGame.dll
 C:\Users\Lyco\Desktop\battleships\obj\x86\Debug-Mac\MyGame.csprojResolveAssemblyReference.cache
 C:\Users\Lyco\Desktop\battleships\obj\x86\Debug-Mac\MyGame.exe
 C:\Users\Lyco\Desktop\battleships\obj\x86\Debug-Mac\MyGame.pdb
+C:\Users\101380266\Documents\Code\battleships\obj\x86\Debug-Mac\MyGame.exe
+C:\Users\101380266\Documents\Code\battleships\obj\x86\Debug-Mac\MyGame.pdb

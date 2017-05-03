@@ -105,6 +105,12 @@ static class DiscoveryController
         const int SPLASH_TOP = 256;
         const int TIMER = 300;
 
+        //hold S key all enemy ship will show
+        if (SwinGame.KeyDown(KeyCode.vk_s))
+        {
+            UtilityFunctions.DrawField(GameController.ComputerPlayer.PlayerGrid, GameController.ComputerPlayer, true);
+        }
+
         if ((SwinGame.KeyDown (KeyCode.vk_LSHIFT) | SwinGame.KeyDown (KeyCode.vk_RSHIFT)) & SwinGame.KeyDown (KeyCode.vk_c)) {
             UtilityFunctions.DrawField (GameController.HumanPlayer.EnemyGrid, GameController.ComputerPlayer, true);
         } else {
