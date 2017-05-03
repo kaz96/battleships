@@ -28,40 +28,36 @@ static class DiscoveryController
 
     public static void HandleDiscoveryInput (Timer countdown)
     {
-       
+
         bool random;
+        var ticks = SwinGame.TimerTicks (countdown);
+        var seconds = Math.Abs (10 - (ticks / 1000));
 
-
-            var ticks = SwinGame.TimerTicks (countdown);
-
-
-        var seconds = Math.Abs(10 - (ticks / 1000));
-
-        SwinGame.DrawText (seconds.ToString(), Color.White, GameResources.GameFont ("Menu"), 172, 300);
+        SwinGame.DrawText (seconds.ToString (), Color.White, GameResources.GameFont ("Menu"), 172, 300);
         SwinGame.RefreshScreen ();
         if (ticks > 10000) {
-                random = true;
-                SwinGame.ResetTimer (countdown);
-                DoAttack (random);
-            }
+            random = true;
+            SwinGame.ResetTimer (countdown);
+            DoAttack (random);
+        }
 
         if (SwinGame.KeyTyped (KeyCode.vk_ESCAPE)) {
-                GameController.AddNewState (GameState.ViewingGameMenu);
+            GameController.AddNewState (GameState.ViewingGameMenu);
         }
 
         if (SwinGame.MouseClicked (MouseButton.LeftButton)) {
             random = false;
-            SwinGame.ResetTimer(countdown);
+            SwinGame.ResetTimer (countdown);
             DoAttack (random);
         }
 
         if (SwinGame.KeyTyped (KeyCode.vk_r)) {
             random = true;
-            SwinGame.ResetTimer(countdown);
+            SwinGame.ResetTimer (countdown);
             DoAttack (random);
         }
 
-        
+
 
     }
 
@@ -98,29 +94,29 @@ static class DiscoveryController
         }
     }
 
-	/// <summary>
-	/// Draws the game during the attack phase.
-	/// </summary>s
-	public static void DrawDiscovery()
-	{
-		const int SCORES_LEFT = 172;
-		const int SHOTS_TOP = 157;
-		const int HITS_TOP = 206;
-		const int SPLASH_TOP = 256;
+    /// <summary>
+    /// Draws the game during the attack phase.
+    /// </summary>s
+    public static void DrawDiscovery ()
+    {
+        const int SCORES_LEFT = 172;
+        const int SHOTS_TOP = 157;
+        const int HITS_TOP = 206;
+        const int SPLASH_TOP = 256;
         const int TIMER = 300;
 
-		if ((SwinGame.KeyDown(KeyCode.vk_LSHIFT) | SwinGame.KeyDown(KeyCode.vk_RSHIFT)) & SwinGame.KeyDown(KeyCode.vk_c)) {
-			UtilityFunctions.DrawField(GameController.HumanPlayer.EnemyGrid, GameController.ComputerPlayer, true);
-		} else {
-			UtilityFunctions.DrawField(GameController.HumanPlayer.EnemyGrid, GameController.ComputerPlayer, false);
-		}
+        if ((SwinGame.KeyDown (KeyCode.vk_LSHIFT) | SwinGame.KeyDown (KeyCode.vk_RSHIFT)) & SwinGame.KeyDown (KeyCode.vk_c)) {
+            UtilityFunctions.DrawField (GameController.HumanPlayer.EnemyGrid, GameController.ComputerPlayer, true);
+        } else {
+            UtilityFunctions.DrawField (GameController.HumanPlayer.EnemyGrid, GameController.ComputerPlayer, false);
+        }
 
-		UtilityFunctions.DrawSmallField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer);
-		UtilityFunctions.DrawMessage();
+        UtilityFunctions.DrawSmallField (GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer);
+        UtilityFunctions.DrawMessage ();
 
-		SwinGame.DrawText(GameController.HumanPlayer.Shots.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, SHOTS_TOP);
-		SwinGame.DrawText(GameController.HumanPlayer.Hits.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, HITS_TOP);
-		SwinGame.DrawText(GameController.HumanPlayer.Missed.ToString(), Color.White, GameResources.GameFont("Menu"), SCORES_LEFT, SPLASH_TOP);
+        SwinGame.DrawText (GameController.HumanPlayer.Shots.ToString (), Color.White, GameResources.GameFont ("Menu"), SCORES_LEFT, SHOTS_TOP);
+        SwinGame.DrawText (GameController.HumanPlayer.Hits.ToString (), Color.White, GameResources.GameFont ("Menu"), SCORES_LEFT, HITS_TOP);
+        SwinGame.DrawText (GameController.HumanPlayer.Missed.ToString (), Color.White, GameResources.GameFont ("Menu"), SCORES_LEFT, SPLASH_TOP);
 
     }
 
