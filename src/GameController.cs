@@ -190,7 +190,7 @@ public static class GameController
                 {
                     while (Audio.SoundEffectPlaying(GameResources.GameSound("Sink")))
                     {
-                        SwinGame.Delay(3);
+                        SwinGame.Delay(5);
                         SwinGame.RefreshScreen();
                     }
                 }
